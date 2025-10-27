@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarot Card Picker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>ไพ่ทาโร่ต์</h1>
+    <p>คลิกเลือกไพ่ 7 ใบ</p>
+    <div id="cards-grid"></div>
+  </div>
+
+  <!-- Modal Popup -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>คุณเลือกครบ 7 ใบแล้ว</h2>
+      <button id="predict-btn">ทำนาย</button>
+      <div id="selected-cards"></div>
+      <button id="new-draw-btn" style="display:none;">ทำนายใหม่</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

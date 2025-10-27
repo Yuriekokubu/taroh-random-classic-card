@@ -1,0 +1,171 @@
+/* style.css */
+
+body {
+	font-family: "Noto Sans Thai", sans-serif;
+	background: linear-gradient(135deg, #222, #444);
+	color: white;
+	text-align: center;
+	margin: 0;
+	padding: 10px; /* ลด padding ลงสำหรับมือถือ */
+}
+
+.container {
+	max-width: 1200px;
+	margin: auto;
+}
+
+h1 {
+	font-size: 2em; /* ขนาดมาตรฐานสำหรับจอใหญ่ */
+	margin-bottom: 5px;
+}
+
+p {
+	font-size: 1em;
+	margin-bottom: 10px;
+}
+
+#cards-grid {
+	/* ค่าเริ่มต้นสำหรับจอใหญ่หรือแท็บเล็ต */
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* เพิ่มขนาดไพ่เล็กน้อยสำหรับจอใหญ่ */
+	gap: 10px;
+	justify-items: center;
+	margin-top: 20px;
+}
+
+.card {
+	width: 120px; /* ขนาดมาตรฐานสำหรับจอใหญ่ */
+	height: 180px; /* เพิ่มความสูงตามสัดส่วน */
+	border-radius: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: transform 0.2s, border 0.2s;
+	border: 2px solid transparent;
+}
+
+.card img {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.card:hover {
+	transform: scale(1.05);
+}
+
+.card.selected {
+	border: 3px solid #ffcc00;
+}
+
+/* -------------------- Modal Popup -------------------- */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto; /* ให้เลื่อนได้หากเนื้อหาเยอะ */
+	background-color: rgba(0, 0, 0, 0.9); /* ทำให้ทึบขึ้นเล็กน้อย */
+}
+
+.modal-content {
+	background-color: #333;
+	margin: 5% auto;
+	padding: 15px; /* ลด padding สำหรับมือถือ */
+	border-radius: 10px;
+	width: 95%; /* ใช้พื้นที่หน้าจอมากขึ้นบนมือถือ */
+	max-width: 800px;
+	color: white;
+	text-align: center;
+}
+
+#selected-cards {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px; /* ลดระยะห่าง */
+	justify-content: center;
+	margin-top: 15px;
+}
+
+#selected-cards > div {
+	/* จัดการให้แต่ละไพ่สามารถมีพื้นที่ของตัวเอง */
+	flex: 0 0 auto;
+	width: 45%; /* ให้ไพ่แสดง 2 ใบต่อแถวบนมือถือ */
+	max-width: 150px;
+}
+
+#selected-cards img {
+	width: 100%; /* ใช้ความกว้างเต็มของ div แม่ */
+	height: auto;
+	border-radius: 5px;
+	transition: transform 0.2s;
+}
+
+#selected-cards p {
+	font-size: 0.8em; /* ลดขนาดตัวอักษรความหมาย */
+	margin-top: 5px;
+}
+
+/* -------------------- ปุ่ม -------------------- */
+button {
+	margin: 15px 5px 10px;
+	padding: 10px 15px;
+	font-size: 16px; /* ลดขนาดปุ่ม */
+	border: none;
+	border-radius: 5px;
+	background-color: #ffcc00;
+	color: #222;
+	font-weight: bold;
+	cursor: pointer;
+	transition: transform 0.2s, background-color 0.2s;
+}
+
+button:hover {
+	transform: scale(1.05);
+	background-color: #ffdd33;
+}
+
+/* ================================================= */
+/* MEDIA QUERY สำหรับมือถือขนาดเล็ก (< 500px) */
+/* ================================================= */
+@media (max-width: 500px) {
+	h1 {
+		font-size: 1.8em;
+	}
+
+	p {
+		font-size: 0.9em;
+	}
+
+	#cards-grid {
+		/* บังคับให้แสดงไพ่ 3-4 ใบต่อแถวบนมือถือ */
+		grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+		gap: 8px;
+	}
+
+	.card {
+		width: 70px; /* ลดขนาดไพ่ลง */
+		height: 105px; /* ลดขนาดไพ่ลง */
+		border-radius: 8px;
+	}
+
+	.modal-content {
+		margin-top: 10px; /* ดัน modal ให้สูงขึ้นบนหน้าจอมือถือ */
+	}
+
+	#selected-cards > div {
+		width: 90%; /* ทำให้ไพ่ใน Modal แสดง 1 ใบต่อแถว (ใหญ่ขึ้น) เพื่อให้ข้อความอ่านง่าย */
+		max-width: 200px;
+	}
+
+	#selected-cards p {
+		font-size: 0.9em; /* เพิ่มขนาดตัวอักษรความหมายขึ้นเล็กน้อยเมื่อแสดง 1 ใบต่อแถว */
+	}
+
+	button {
+		padding: 8px 12px;
+		font-size: 14px;
+	}
+}
